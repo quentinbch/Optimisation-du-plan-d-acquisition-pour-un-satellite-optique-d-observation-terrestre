@@ -12,7 +12,7 @@ from pyscipopt import Model, quicksum
 from itertools import product
 
 # on charge les données
-from spotProba2 import nbImages, nbInstruments, PA, DD, AN, VI, DU, TY, PM, PMmax, Failure, ProbaInf, ProbaSup
+from spotProba5 import nbImages, nbInstruments, PA, DD, AN, VI, DU, TY, PM, PMmax, Failure, ProbaInf, ProbaSup
 
 
 # creation du modele lineaire
@@ -38,9 +38,21 @@ for i in range(nbImages):
 ######################
 
 # en l'absence d'incertitude, on maximise la somme des payoff
-mymodel.setObjective(quicksum(PA[i] * selection[i] for i in range(nbImages)), sense='maximize')
+# mymodel.setObjective(quicksum(PA[i] * selection[i] for i in range(nbImages)), sense='maximize')
+
+# Estimation de la probabilité de nuages, moyenne de l'intervalle
+proba_nuage = [(ProbaInf[i] + ProbaSup[i]) / 2 for i in range(nbImages)]
 
 
+# Fonction objectif prenant en compte l'incertitude nuages et défaillance instruments
+mymodel.setObjective(
+    quicksum(
+        PA[i] * (1 - proba_nuage[i]) * (1 - Failure[j]) * assignedTo[i][j]
+        for i in range(nbImages)
+        for j in range(nbInstruments)
+    ),
+    sense='maximize'
+)
 
 # ajout des contraintes au modele
 ################################
@@ -103,6 +115,6 @@ if mymodel.getStatus() == 'optimal':
     sol=mymodel.getBestSol()
     for ima in range(nbImages):
         for ins in range(nbInstruments):
-            if (mymodel.getVal(assignedTo[ima][ins]) > 0):
-                print("Image" + str(ima) + " selectionnée et  assignée à  " + str(ins) + "  (debut à " + str( DD[ima][ins]) + ")")
+            if mymodel.getVal(assignedTo[ima][ins]) > 0:
+                print("Image" + str(ima) + " selectionnée et  assignée à " + str(ins) + "  (debut à " + str( DD[ima][ins]) + ")")
 
