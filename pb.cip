@@ -1,0 +1,29 @@
+STATISTICS
+  Problem name     : model
+  Variables        : 12 (12 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 0 initial, 8 maximal
+OBJECTIVE
+  Sense            : maximize
+VARIABLES
+  [binary] <select0>: obj=10, original bounds=[0,1]
+  [binary] <select1>: obj=20, original bounds=[0,1]
+  [binary] <select2>: obj=40, original bounds=[0,1]
+  [binary] <assignto0_0>: obj=0, original bounds=[0,1]
+  [binary] <assignto0_1>: obj=0, original bounds=[0,1]
+  [binary] <assignto0_2>: obj=0, original bounds=[0,1]
+  [binary] <assignto1_0>: obj=0, original bounds=[0,1]
+  [binary] <assignto1_1>: obj=0, original bounds=[0,1]
+  [binary] <assignto1_2>: obj=0, original bounds=[0,1]
+  [binary] <assignto2_0>: obj=0, original bounds=[0,1]
+  [binary] <assignto2_1>: obj=0, original bounds=[0,1]
+  [binary] <assignto2_2>: obj=0, original bounds=[0,1]
+CONSTRAINTS
+  [linear] <c1>:  +10<select0>[B] +20<select1>[B] +10<select2>[B] <= 35;
+  [linear] <c2>: <assignto0_0>[B] +<assignto1_0>[B] <= 1;
+  [linear] <c3>: <assignto0_2>[B] +<assignto1_2>[B] <= 1;
+  [linear] <c4>: <select0>[B] -<assignto0_0>[B] -<assignto0_1>[B] -<assignto0_2>[B] == 0;
+  [linear] <c5>: <assignto1_0>[B] -<select1>[B] == 0;
+  [linear] <c6>: <assignto1_2>[B] -<select1>[B] == 0;
+  [linear] <c7>: <assignto1_1>[B] == 0;
+  [linear] <c8>: <select2>[B] -<assignto2_0>[B] -<assignto2_1>[B] -<assignto2_2>[B] == 0;
+END
