@@ -41,7 +41,13 @@ for i in range(nbImages):
 # mymodel.setObjective(quicksum(PA[i] * selection[i] for i in range(nbImages)), sense='maximize')
 
 # Estimation de la probabilité de nuages, moyenne de l'intervalle
-proba_nuage = [(ProbaInf[i] + ProbaSup[i]) / 2 for i in range(nbImages)]
+# proba_nuage = [(ProbaInf[i] + ProbaSup[i]) / 2 for i in range(nbImages)]
+
+alpha = 0.5  # niveau de prudence (0 = optimiste, 1 = pessimiste)
+proba_nuage = [
+    alpha * ProbaSup[i] + (1 - alpha) * ProbaInf[i]
+    for i in range(nbImages)
+]
 
 
 # Fonction objectif prenant en compte l'incertitude nuages et défaillance instruments
