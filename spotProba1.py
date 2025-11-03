@@ -23,37 +23,37 @@ PMmax = 50 # maximum memory
 
 
 
-# Probability of Cloudy Weather
-ProbaInf = [0, 0, 0]
-ProbaSup = [0, 0, 0]
-# proba of failure of each instrument
-Failure = [0, 0, 0]
+# # Probability of Cloudy Weather
+# ProbaInf = [0, 0, 0]
+# ProbaSup = [0, 0, 0]
+# # proba of failure of each instrument
+# Failure = [0, 0, 0]
 
 
 ## other examples
 
 # Maximum value of the objective : 63  (proba of cloud  = 0.1 during all the day; instruments ok)
-#ProbaInf =   [0.1, 0.1, 0.1];
-#ProbaSup =   [0.1, 0.1, 0.1];
-#Failure = [0, 0, 0];
+ProbaInf =   [0.1, 0.1, 0.1]
+ProbaSup =   [0.1, 0.1, 0.1]
+Failure = [0, 0, 0]
 
 
 
 # Maximum value of the objective : 49  (proba of cloud  in  [0.1, 0,3] during all the day; instruments ok)
-#ProbaInf =   [0.1, 0.1, 0.1];
-#ProbaSup =   [0.3, 0.3, 0.3];
-#Failure = [0, 0, 0];
+# ProbaInf =   [0.1, 0.1, 0.1]
+# ProbaSup =   [0.3, 0.3, 0.3]
+# Failure = [0, 0, 0]
 
 # Maximum value of the objective : 60  (no cloud; instrument 2 is down )
 #  no image is assigned on instrument 2 ; 
 # image 1 is not selected but it would be selected if we increase its payoff
 #  image 1 is assigned on instrument 2 if its probability of failure is decreased
-#ProbaInf =    [0, 0, 0];
-#ProbaSup =    [0, 0, 0];
-#Failure = [0, 1, 0];
+# ProbaInf =    [0, 0, 0]
+# ProbaSup =    [0, 0, 0]
+# Failure = [0, 1, 0]
 
 
-# Maximum value of the objective : 14.661  
-#ProbaInf =    [0, 0, 0];
-#ProbaSup =    [0.1, 0.5, 0.9];
-#Failure = [0.01, 0.9, 0.01];
+# Maximum value of the objective : 14.661
+# ProbaInf =    [0, 0, 0]
+# ProbaSup =    [0.1, 0.5, 0.9]
+# Failure = [0.01, 0.9, 0.01]
